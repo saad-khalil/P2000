@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P2000 Dashboard</title>
+    <link rel="stylesheet" href="resources/w3.css">
+    <link rel="stylesheet" href="resources/style.css">
+
+    <link rel="stylesheet" href="style/layout.css"/>
+    <link rel="stylesheet" href="style/theme.css"/>
+
+    <script src="lib/jquery-2.1.1.min.js"></script>
+    <script src="lib/jquery.flot.min.js"></script>
+    <script src="lib/core.js"></script>
+    <script src="lib/charts.js"></script>
+    <script src="lib/log.js"></script>
+    <script src="lib/tweets.js"></script>
+</head>
+<body>
+    <div id="header" class="w3-container" style="height:10%;">
+        <h2><b>P2000 Dashboard</b></h2>
+    </div>
+    <div id="container" class="w3-row">
+        <div id="filter" class="w3-col s2 m2 l2 w3-container w3-border-right">
+            <div>
+                <h3>Filter options</h3>
+                <div class="w3-container w3-margin">
+                    <h4>Services</h4>
+                    <input class="w3-check" type="checkbox" checked="checked">
+                    <label>Ambulance</label><br>
+                    <input class="w3-check" type="checkbox" checked="checked">
+                    <label>Fire Dept.</label><br>
+                </div>
+                <div class="w3-container w3-margin">
+                    <h4>Visualization</h4>
+                    <input class="w3-radio" type="radio" name="visual" value="incidents" checked>
+                    <label>Incidents</label><br>
+                    <input class="w3-radio" type="radio" name="visual" value="heatmap">
+                    <label>Heatmap</label>
+                </div>
+            </div>
+        </div>
+        <div class="w3-col s6 m6 l6 w3-container">
+            <h3>Data visualization</h3>
+            <div id="mapdiv">
+                <iframe width="600" height="550" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=6.8291616439819345%2C52.23395007154719%2C6.869330406188966%2C52.25147738406991&amp;layer=mapnik" style="border: 1px solid black; margin-left:10%;margin-top: 3%;">
+                </iframe><br/>
+            </div>
+        </div>
+        <div id="feed" class="w3-col s4 m4 l4 w3-container w3-border-left">
+            <h3>Live P2000 Feed</h3>
+            <div id="feedcontent">
+                
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    block('#feedcontent').tweets({memory: 50});
+
+    events.connect('one', '#feedcontent');
+</script>
+</html>
